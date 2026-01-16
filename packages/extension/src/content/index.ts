@@ -22,16 +22,31 @@ const detectConnpassPage = (): PageInfo => {
   };
 };
 
+/**
+ * イベントタイトルを取得する
+ * 編集ページではinput要素から、通常ページではh1要素から取得
+ */
 const getEventTitle = (): string | null => {
+  const titleInput = document.querySelector<HTMLInputElement>(
+    'input[name="title"]'
+  );
+  if (titleInput?.value) {
+    return titleInput.value.trim();
+  }
+
   const titleElement = document.querySelector(
     '.event_title, h1.title'
   ) as HTMLElement | null;
   return titleElement?.textContent?.trim() ?? null;
 };
 
+/**
+ * イベント説明のMarkdownを抽出する
+ * 編集ページではtextareaから、通常ページではDOM要素から変換
+ */
 const extractMarkdown = (): string => {
   const textarea = document.querySelector<HTMLTextAreaElement>(
-    'textarea[name="description"], textarea#id_description'
+    'textarea[name="description_input"]'
   );
   if (textarea) {
     return textarea.value;
