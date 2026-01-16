@@ -36,7 +36,7 @@ export const MarkdownPreview = ({
 
   return (
     <div
-      className="connpass-preview prose prose-sm max-w-none p-4"
+      className="connpass-preview max-w-none p-4"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

@@ -1,6 +1,6 @@
 import rehypeHighlight from 'rehype-highlight';
 import rehypeStringify from 'rehype-stringify';
-import remarkGemoji from 'remark-gemoji';
+import remarkEmoji from 'remark-emoji';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
@@ -9,7 +9,7 @@ import { unified } from 'unified';
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
-  .use(remarkGemoji)
+  .use(remarkEmoji, { emoticon: true })
   .use(remarkRehype)
   .use(rehypeHighlight)
   .use(rehypeStringify);
