@@ -97,3 +97,129 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
+
+/* connpass preview styles */
+.connpass-preview {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+.connpass-preview h1 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.connpass-preview h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.connpass-preview h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.connpass-preview p {
+  margin-bottom: 1rem;
+}
+
+.connpass-preview ul,
+.connpass-preview ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.connpass-preview li {
+  margin-bottom: 0.25rem;
+}
+
+.connpass-preview a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.connpass-preview a:hover {
+  text-decoration: underline;
+}
+
+.connpass-preview img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.connpass-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.connpass-preview th,
+.connpass-preview td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.connpass-preview th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.connpass-preview tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.connpass-preview code {
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.connpass-preview pre {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.connpass-preview pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.connpass-preview blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #666;
+}
+
+.connpass-preview hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 2rem 0;
+}
+
+.connpass-preview strong {
+  font-weight: bold;
+}
+
+.connpass-preview em {
+  font-style: italic;
+}
