@@ -1,7 +1,7 @@
 'use client';
 
-import type { EditorMessage } from '@connlytics/shared';
 import { useEffect, useState } from 'react';
+import type { EditorMessage } from '@/shared/types/messages';
 
 type UseEditorPageResult = {
   markdown: string;
