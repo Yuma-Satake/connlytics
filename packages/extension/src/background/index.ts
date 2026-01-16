@@ -1,15 +1,15 @@
-const WEB_APP_URL = 'https://connlytics-web.vercel.app';
+const WEB_APP_URL = 'https://connlytics.com';
 
-interface ExtractMarkdownPayload {
+type ExtractMarkdownPayload = {
   title: string;
   url: string;
   markdown: string;
-}
+};
 
-interface ExtractMarkdownMessage {
+type ExtractMarkdownMessage = {
   type: 'EXTRACT_MARKDOWN';
   payload: ExtractMarkdownPayload;
-}
+};
 
 chrome.runtime.onMessage.addListener(
   (message: ExtractMarkdownMessage, _sender, sendResponse) => {
@@ -21,6 +21,9 @@ chrome.runtime.onMessage.addListener(
   }
 );
 
+/**
+ * Markdownデータを含むURLでエディタページを開く
+ */
 const handleExtractMarkdown = async (
   payload: ExtractMarkdownPayload
 ): Promise<void> => {
@@ -29,34 +32,7 @@ const handleExtractMarkdown = async (
   const editorUrl = new URL(`${WEB_APP_URL}/editor`);
   editorUrl.searchParams.set('title', title);
   editorUrl.searchParams.set('url', url);
+  editorUrl.searchParams.set('markdown', encodeURIComponent(markdown));
 
-  const tab = await chrome.tabs.create({ url: editorUrl.toString() });
-
-  chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
-    if (tabId === tab.id && info.status === 'complete') {
-      chrome.tabs.onUpdated.removeListener(listener);
-
-      if (tab.id) {
-        chrome.scripting.executeScript({
-          target: { tabId: tab.id },
-          func: sendMessageToPage,
-          args: [markdown, title, url],
-        });
-      }
-    }
-  });
-};
-
-const sendMessageToPage = (
-  markdown: string,
-  title: string,
-  url: string
-): void => {
-  window.postMessage(
-    {
-      type: 'LOAD_MARKDOWN',
-      payload: { markdown, eventTitle: title, eventUrl: url },
-    },
-    '*'
-  );
+  await chrome.tabs.create({ url: editorUrl.toString() });
 };

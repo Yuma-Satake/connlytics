@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import type { EditorMessage } from '@/shared/types/messages';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 type UseEditorPageResult = {
   markdown: string;
@@ -10,29 +10,26 @@ type UseEditorPageResult = {
   eventUrl: string | undefined;
 };
 
+/**
+ * エディタページのURLパラメータからmarkdown, title, urlを取得するhooks
+ */
 export const useEditorPage = (): UseEditorPageResult => {
-  const [markdown, setMarkdown] = useState('');
-  const [eventTitle, setEventTitle] = useState<string | undefined>();
-  const [eventUrl, setEventUrl] = useState<string | undefined>();
+  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent): void => {
-      const message = event.data as EditorMessage;
-      if (message?.type === 'LOAD_MARKDOWN') {
-        setMarkdown(message.payload.markdown);
-        setEventTitle(message.payload.eventTitle);
-        setEventUrl(message.payload.eventUrl);
-      }
-    };
+  const markdownParam = searchParams.get('markdown');
+  const titleParam = searchParams.get('title');
+  const urlParam = searchParams.get('url');
 
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
+  const initialMarkdown = markdownParam
+    ? decodeURIComponent(markdownParam)
+    : '';
+
+  const [markdown, setMarkdown] = useState(initialMarkdown);
 
   return {
     markdown,
     setMarkdown,
-    eventTitle,
-    eventUrl,
+    eventTitle: titleParam ?? undefined,
+    eventUrl: urlParam ?? undefined,
   };
 };
