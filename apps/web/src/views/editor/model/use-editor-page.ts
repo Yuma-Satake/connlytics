@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type UseEditorPageResult = {
   markdown: string;
@@ -13,19 +13,11 @@ type UseEditorPageResult = {
 export const useEditorPage = (): UseEditorPageResult => {
   const searchParams = useSearchParams();
 
-  const markdownParam = searchParams.get('markdown');
+  const markdownParam = searchParams.get('markdown') ?? '';
   const titleParam = searchParams.get('title');
   const urlParam = searchParams.get('url');
 
-  const [markdown, setMarkdown] = useState('');
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    if (!isInitialized && markdownParam) {
-      setMarkdown(markdownParam);
-      setIsInitialized(true);
-    }
-  }, [markdownParam, isInitialized]);
+  const [markdown, setMarkdown] = useState(markdownParam);
 
   return {
     markdown,

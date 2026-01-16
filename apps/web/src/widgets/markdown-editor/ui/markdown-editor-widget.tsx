@@ -2,7 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import type React from 'react';
-import { CopyButton, DownloadButton } from '@/features/export-markdown';
+import { CopyButton } from '@/features/export-markdown';
 import { MarkdownPreview } from '@/features/preview-markdown';
 import { cn } from '@/shared/lib';
 
@@ -43,7 +43,6 @@ export const MarkdownEditorWidget = ({
             </a>
           )}
           <CopyButton markdown={markdown} />
-          <DownloadButton markdown={markdown} filename={eventTitle} />
         </div>
       </header>
 
