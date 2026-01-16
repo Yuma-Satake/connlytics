@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Connlytics - connpassイベント主催者向け機能拡張ツール',
   description:
-    'connpassイベント説明文のMarkdownをリアルタイムでプレビュー・編集',
+    'connpassイベント説明文のMarkdownをリアルタイムでプレビュー・編集できるツール',
 };
 
 export default function RootLayout({
