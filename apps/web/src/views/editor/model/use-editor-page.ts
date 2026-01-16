@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type UseEditorPageResult = {
   markdown: string;
@@ -10,9 +10,6 @@ type UseEditorPageResult = {
   eventUrl: string | undefined;
 };
 
-/**
- * エディタページのURLパラメータからmarkdown, title, urlを取得するhooks
- */
 export const useEditorPage = (): UseEditorPageResult => {
   const searchParams = useSearchParams();
 
@@ -20,9 +17,15 @@ export const useEditorPage = (): UseEditorPageResult => {
   const titleParam = searchParams.get('title');
   const urlParam = searchParams.get('url');
 
-  const initialMarkdown = markdownParam ?? '';
+  const [markdown, setMarkdown] = useState('');
+  const [isInitialized, setIsInitialized] = useState(false);
 
-  const [markdown, setMarkdown] = useState(initialMarkdown);
+  useEffect(() => {
+    if (!isInitialized && markdownParam) {
+      setMarkdown(markdownParam);
+      setIsInitialized(true);
+    }
+  }, [markdownParam, isInitialized]);
 
   return {
     markdown,
