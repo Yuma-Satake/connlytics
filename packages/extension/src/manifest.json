@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "connpassイベント主催者向け機能拡張ツール",
   "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["https://connpass.com/*"],
+  "host_permissions": ["https://connpass.com/*", "https://connlytics.com/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

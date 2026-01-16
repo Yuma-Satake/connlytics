@@ -20,9 +20,7 @@ export const useEditorPage = (): UseEditorPageResult => {
   const titleParam = searchParams.get('title');
   const urlParam = searchParams.get('url');
 
-  const initialMarkdown = markdownParam
-    ? decodeURIComponent(markdownParam)
-    : '';
+  const initialMarkdown = markdownParam ?? '';
 
   const [markdown, setMarkdown] = useState(initialMarkdown);
 

@@ -32,7 +32,7 @@ const handleExtractMarkdown = async (
   const editorUrl = new URL(`${WEB_APP_URL}/editor`);
   editorUrl.searchParams.set('title', title);
   editorUrl.searchParams.set('url', url);
-  editorUrl.searchParams.set('markdown', encodeURIComponent(markdown));
+  editorUrl.searchParams.set('markdown', markdown);
 
   await chrome.tabs.create({ url: editorUrl.toString() });
 };
