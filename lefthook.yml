@@ -12,6 +12,8 @@ pre-push:
       run: pnpm typecheck
     build:
       run: pnpm build
+    fsd-lint:
+      run: pnpm --filter @connlytics/web lint
 
 post-merge:
   commands:
